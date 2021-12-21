@@ -2,6 +2,7 @@
 
 @section('style')
     <link rel="stylesheet" href="{{ asset('css/tecshop.css') }}">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
 @endsection
 
 @section('content')
@@ -27,11 +28,11 @@
 
                         </button>
                         <button type="button" class="btn-action">
+                            
                             <span>
-                                New Porduct
+                                New Product
                                 <i class="mdi mdi-plus"></i>
                             </span>
-
                         </button>
                     </div>
                 </div>
@@ -68,8 +69,8 @@
                                     <td>
                                     <label class="badge badge-success">Publico</label>
                                     </td>
-                                    <td class="text-info" style="font-size: 1.2rem; cursor:pointer; text-align:center;">
-                                        <i class="mdi mdi-border-color"></i>
+                                    <td>
+                                        <a href="#"><i class="fas fa-pen"></i></a>
                                     </td>
                                 </tr>
                                 <tr>
@@ -81,8 +82,8 @@
                                     <td>
                                     <label class="badge badge-warning">Privado</label>
                                     </td>
-                                    <td class="text-info" style="font-size: 1.2rem; cursor:pointer; text-align:center;">
-                                        <i class="mdi mdi-border-color"></i>
+                                    <td>
+                                        <a href="#"><i class="fas fa-pen"></i></a>
                                     </td>
                                 </tr>
                                 <tr>
@@ -95,8 +96,8 @@
                                     <td>
                                     <label class="badge badge-danger">Agotado</label>
                                     </td>
-                                    <td class="text-info" style="font-size: 1.2rem; cursor:pointer; text-align:center;">
-                                        <i class="mdi mdi-border-color"></i>
+                                    <td>
+                                        <a href="#"><i class="fas fa-pen"></i></a>
                                     </td>
                                 </tr>
                                 </tbody>

@@ -27,9 +27,29 @@ Route::get('/products', function () {
 Route::get('/products/create', function () {
     return view('products.create');
 });
+Route::get('/products/{id}', function ($id) {
+    return view('products.edit', ['id' => $id]);
+});
 
+Route::get('/categories', function () {
+    return view('categories.index');
+});
+Route::get('/categories/create', function () {
+    return view('categories.create');
+});
+Route::get('/categories/{id}', function ($id) {
+    return view('categories.edit', ['id' => $id]);
+});
 
-Route::get('/','DashboardController@index');
+Route::get('/orders', function () {
+    return view('orders.index');
+});
+
+Route::get('/orders/{id}', function ($id) {
+    return view('orders.edit', ['id' => $id]);
+});
+
+// Route::get('/','DashboardController@index');
 
 Route::group(['prefix' => 'basic-ui'], function(){
     Route::get('accordions', function () { return view('pages.basic-ui.accordions'); });

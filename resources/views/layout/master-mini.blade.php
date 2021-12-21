@@ -21,6 +21,7 @@
 
   <!-- common css -->
   <link rel="stylesheet" href="{{ asset('css/app.css')}}">
+  
   <!-- end common css -->
 
    @yield('style')

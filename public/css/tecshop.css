@@ -92,10 +92,9 @@
 }
 
 .image-container img{
-    max-height: 280px;
     display: inline-block;
-    height: auto;
-    width: 100%;
+    height: 288px;
+    width: 304px;
 }
 .image-container p{
     display: none;
@@ -103,8 +102,9 @@
 
 .image-container.no_image  img{
     width: 3rem;
-
+    
     margin-bottom: 10px;
+
 }
 .image-container.no_image  p {
     color: #ccc;
@@ -116,7 +116,7 @@
     text-align: center;
     display: block;
 }
-
+ 
 .btn-toggle{
     position: relative;
     width: 1.8rem;
@@ -172,4 +172,315 @@
     border: 1px solid #008dd5;
     outline: 0;
     color: #474747;
+}
+
+/* .card-body-picture{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    width: 300px;
+    height: 60px;
+    margin-top: 10px;
+} */
+
+.card-body-picture .sect{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 60px;
+}
+
+.card-body-picture .sect .pt1{
+    margin: 10px 120px 0 0;
+}
+
+.card-body-picture .sect .pt1 p{
+    color: #a7a7a7;
+}
+
+input[type="checkbox"] {
+    -webkit-appearance: none;
+    appearance: none;
+    position: relative;
+    width: 30px;
+    height: 15px;
+    border: 2px solid #d9d9d9;
+    outline: none;
+    border-radius: 30px;
+    transition: .3s;
+    background: rgb(218, 218, 218);
+}
+
+input[type="checkbox"]::before {
+    content: "";
+    position: absolute;
+    bottom: -1px;
+    width: 13px;
+    height: 13px;
+    background-color: white;
+    border-radius: 50%;
+    transition: .3s ease;
+    box-shadow: gray .5px 0px 1px .1px;
+}
+
+input[type="checkbox"]:checked::before {
+    transform: translateX(13px);
+    background: white;
+}
+
+input[type="checkbox"]:checked{
+    border-color: #008dd5;
+    background: #008dd5;
+    box-shadow: none;
+}
+input[type="checkbox"]:hover {
+    cursor: pointer;
+}
+
+hr{
+    margin-top: -5px;
+    color: gray;
+    width: 100%;
+}
+
+.newProduct{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.newProduct-btn{
+    margin: 30px;
+    background: #008dd5;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    width: 80%;
+    height: 35px;
+    margin-top: 15px;
+}
+
+.newProduct-btn:hover{
+    background: #03608c;
+}
+
+.fa-pen{
+    color: gray;
+    font-size: 16px;
+    transform: translateX(15px);
+}
+
+.fa-pen:hover{
+    color: #008dd5;
+}
+
+.asterisk{
+    color: #008dd5;
+}
+
+.newCategory{
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    margin: 0 10px 0 0;
+}
+
+.newCategory-btn{
+    margin: 30px;
+    background: #008dd5;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    width: 25%;
+    height: 35px;
+    margin: 0;
+}
+
+.condition{
+    font-weight: 500;
+}
+
+.delivered{
+    color: #008dd5;
+    
+}
+
+.earring{
+    color: #eed202;
+}
+
+.cancelled{
+    color: #df4759;
+}
+
+.row-order{
+    cursor: pointer;
+}
+
+.order-data{
+    box-shadow: 1px 1px 5px 0px rgba(0,0,0,0.7);
+    background-color: white;
+}
+
+.order-data-p{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #474747;
+    margin-bottom: -10px;
+}
+
+.order-data-lbl{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    font-weight: 500;
+    margin-top: 10px;
+}
+
+.total-lbl{
+    color: #008dd5;
+}
+
+.order-img-card{
+    width: 100px;
+    height: 100px;
+}
+
+.order-title-card{
+    font-size: 14px;
+    font-weight: 500;
+    color: #474747;
+    margin: -15px 0 15px 0;
+}
+
+.order-img-card{
+    border-radius: 50%;
+    margin-left: 25%;
+}
+
+.order-data-card{
+    margin-left: 25%;
+}
+
+
+.payment-summary{
+    /* background-color: red; */
+    padding: 0 10px;
+}
+
+.price-payment{
+    display: flex;
+    justify-content: end;
+}
+
+.top-text{
+    margin: 0 0 8px 0;
+}
+
+.text-payment{
+    font-size: 14px;
+    color: #474747;
+    margin: 8px 0;
+}
+
+.price-payment{
+    font-size: 14px;
+    color: #474747;
+    font-weight: 500;
+    margin: 8px 0;
+}
+
+
+.total-payment{
+    font-size: 20px;
+    color: #272727;
+    font-weight: 500;
+    margin: 5px 0 -20px 0;
+}
+
+.order-details{
+    font-size: 14px;
+    color: gray;
+}
+
+.quantity-center{
+    display: flex;
+    justify-content: center;
+}
+
+.fa-map-marker-alt{
+    font-size: 30px;
+    color: gray;
+    margin: 0 20px 0 15px;
+    transform: translateY(10px);
+}
+
+.fa-comment-alt{
+    font-size: 25px;
+    color: gray;
+    margin: 0 20px 0 15px;
+    transform: translateY(10px);
+
+}
+
+.shipping-data{
+    margin-top: 15px;
+}
+
+.shipping-data-text{
+    margin: 0;
+}
+
+.shipping-title{
+    font-size: 15px;
+    color: #474747;
+    font-weight: 400;
+
+}
+
+.shipping-text{
+    font-size: 14px;
+    color: gray;
+}
+
+.fa-whatsapp{
+    font-size: 50px;
+    color: #4FCE5D;
+}
+
+.payment-data{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.payment-data-section{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 130px;
+}
+
+.payment-data-icon{
+    display: flex;
+    justify-content: end;
+}
+
+.payment-title{
+    font-size: 15px;
+    color: #474747;
+    font-weight: 400;
+}
+
+.payment-text{
+    font-size: 14px;
+    color: gray;
+    margin: -15px 0 0 0;
 }

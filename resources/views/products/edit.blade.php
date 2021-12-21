@@ -14,7 +14,7 @@
                         <div class="container-icon-shop">
                             <img src="{{ url('/assets/images/page_icon/icon-shop.svg', []) }}" alt="">
                         </div>
-                        <h3>New Product</h3>
+                        <h3>Edit Product</h3>
                     </div>
                 </div>
             </div>
@@ -31,7 +31,7 @@
                             <div class="col-12">
                                 <div class="input-group">
                                     <label for="name_product">Name
-                                        <strong class="asterisk">*</strong>
+                                        <strong>*</strong>
                                     </label>
                                     <input type="text" class="input-control is-medium" id="name_product" placeholder="Name">
                                 </div>
@@ -39,7 +39,7 @@
                             <div class="col-md-6">
                                 <div class="input-group">
                                     <label for="name_product">Category
-                                        <strong class="asterisk">*</strong>
+                                        <strong>*</strong>
                                     </label>
                                     <select class="input-control is-medium" name="" id="">
                                         <option value="">category 1</option>
@@ -49,7 +49,7 @@
                             <div class="col-md-6">
                                 <div class="input-group">
                                     <label for="name_product"> Sub Category
-                                        <strong class="asterisk">*</strong>
+                                        <strong>*</strong>
                                     </label>
                                     <select class="input-control is-medium" name="" id="">
                                         <option value="">sub category 1</option>
@@ -59,7 +59,7 @@
                             <div class="col-md-6">
                                 <div class="input-group">
                                     <label for="name_product">Brand
-                                        <strong class="asterisk">*</strong>
+                                        <strong>*</strong>
                                     </label>
                                     <select class="input-control is-medium" name="" id="">
                                         <option value="">brand 1</option>
@@ -69,7 +69,7 @@
                             <div class="col-md-6">
                                 <div class="input-group">
                                     <label for="price">Price
-                                        <strong class="asterisk">*</strong>
+                                        <strong>*</strong>
                                     </label>
                                     <input type="number" class="input-control is-medium" id="price" placeholder="0" min="0" >
                                 </div>
@@ -77,9 +77,7 @@
 
                             <div class="col-12">
                                 <div class="input-group">
-                                    <label for="description">Description
-                                        <strong class="asterisk">*</strong>
-                                    </label>
+                                    <label for="description">Example label</label>
                                     <textarea class="input-control is-medium" rows="4" maxlength="500" name="description"
                                         id="description"></textarea>
                                 </div>
@@ -117,7 +115,7 @@
                     </div>
                     <hr>
                     <div class="newProduct">
-                        <button class="newProduct-btn" type="submit">Create</button>
+                        <button class="newProduct-btn" type="submit">Save</button>
                     </div>
                 </div>
             </div>
