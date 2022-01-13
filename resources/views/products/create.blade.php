@@ -21,7 +21,8 @@
         </h1>
 
 
-        <form action="" method="POST" class="row">
+        <form action="{{ route('product.store') }}" method="POST" class="row" enctype="multipart/form-data">
+            @csrf
             <div class="col-md-8 grid-margin stretch-card">
                 <div class="card">
                     <h4 class="card-header">General information</h4>
@@ -33,16 +34,26 @@
                                     <label for="name_product">Name
                                         <strong class="asterisk">*</strong>
                                     </label>
-                                    <input type="text" class="input-control is-medium" id="name_product" placeholder="Name">
+                                    <input type="text" class="input-control" id="name" name="name" placeholder="Name">
                                 </div>
+
+                                @error('name')
+                                    <span class="text-danger">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+
+                                @enderror
+
                             </div>
                             <div class="col-md-6">
                                 <div class="input-group">
                                     <label for="name_product">Category
                                         <strong class="asterisk">*</strong>
                                     </label>
-                                    <select class="input-control is-medium" name="" id="">
-                                        <option value="">category 1</option>
+                                    <select class="input-control is-medium" id="category">
+                                        @foreach ($categories as $category)
+                                            <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>
@@ -51,28 +62,44 @@
                                     <label for="name_product"> Sub Category
                                         <strong class="asterisk">*</strong>
                                     </label>
-                                    <select class="input-control is-medium" name="" id="">
-                                        <option value="">sub category 1</option>
+                                    {{-- select sub category --}}
+                                    <select class="input-control is-medium" id="subcategory" name="subcategory_id">
                                     </select>
                                 </div>
+                                @error('subcategory_id')
+                                    <span class="text-danger">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+
+                                @enderror
                             </div>
+                            {{-- stock --}}
                             <div class="col-md-6">
                                 <div class="input-group">
-                                    <label for="name_product">Brand
+                                    <label for="name_product">Stock
                                         <strong class="asterisk">*</strong>
                                     </label>
-                                    <select class="input-control is-medium" name="" id="">
-                                        <option value="">brand 1</option>
-                                    </select>
+                                    <input type="number" class="input-control" id="stock" name="stock" placeholder="Stock">
                                 </div>
+                                @error('stock')
+                                    <span class="text-danger">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+
                             </div>
                             <div class="col-md-6">
                                 <div class="input-group">
                                     <label for="price">Price
                                         <strong class="asterisk">*</strong>
                                     </label>
-                                    <input type="number" class="input-control is-medium" id="price" placeholder="0" min="0" >
+                                    <input type="number" class="input-control is-medium" id="price" name="price" placeholder="0" min="0">
                                 </div>
+                                @error('price')
+                                    <span class="text-danger">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
 
                             <div class="col-12">
@@ -97,7 +124,7 @@
                                 id="image" accept="image/png, image/jpeg, image/jpg" multiple>
                             <p>Add an image of your product</p>
                         </label>
-                        <input type="file" name="image_file" id="image_file" style="display: none;">
+                        <input type="file" name="image" id="image_file" style="display: none;" accept="image/*">
                     </div>
                     <div class="card-body-picture">
                         <div class="sect">
@@ -110,11 +137,16 @@
                                         <span class="toggle"></span>
                                     </div>
                                 </div> --}}
-                                <input type="checkbox" name="check_product" id="check_product">
+                                <input type="checkbox" name="status" id="check_product">
 
                             </div>
                         </div>
                     </div>
+                    @error('image')
+                        <span class="text-danger">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
                     <hr>
                     <div class="newProduct">
                         <button class="newProduct-btn" type="submit">Create</button>
@@ -129,4 +161,50 @@
 
 @section('custom-scripts')
     <script src="{{ asset('js/tecshop.js') }}"></script>
+@endsection
+
+@section('codigo')
+    <script>
+        $(document).ready(function() {
+
+            ct = $('#category').val();
+            $.ajax({
+                url: '/getsubcategory/' + ct,
+                type: "GET",
+                dataType: "json",
+                success: function(data) {
+                    $('#subcategory').empty();
+                    $.each(data, function(key, value) {
+                        $('#subcategory').append('<option value="' + value.id + '">' + value
+                            .name + '</option>');
+                    });
+                }
+            });
+
+            $('#category').on('change', function() {
+                var category_id = $(this).val();
+                if (category_id) {
+                    $.ajax({
+                        url: '/getsubcategory/' + category_id,
+                        type: "GET",
+                        dataType: "json",
+                        success: function(data) {
+                            $('#subcategory').empty();
+                            $.each(data, function(key, value) {
+                                $('#subcategory').append('<option value="' + value.id +
+                                    '">' + value.name + '</option>');
+                            });
+                        }
+                    });
+                } else {
+                    $('#subcategory').empty();
+                }
+            });
+        });
+    </script>
+
+
+<script>
+    console.log("hola");
+</script>
 @endsection

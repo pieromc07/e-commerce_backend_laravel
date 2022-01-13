@@ -11,29 +11,29 @@
       <span class="mdi mdi-menu"></span>
     </button>
     <ul class="navbar-nav navbar-nav-left header-links">
-      <li class="nav-item d-none d-xl-flex">
+      {{-- <li class="nav-item d-none d-xl-flex">
         <a href="#" class="nav-link">Schedule <span class="badge badge-primary ml-1">New</span>
         </a>
-      </li>
+      </li> --}}
       <li class="nav-item active d-none d-lg-flex">
         <a href="#" class="nav-link">
           <i class="mdi mdi-elevation-rise"></i>Reports</a>
       </li>
-      <li class="nav-item d-none d-md-flex">
+      {{-- <li class="nav-item d-none d-md-flex">
         <a href="#" class="nav-link">
           <i class="mdi mdi-bookmark-plus-outline"></i>Score</a>
-      </li>
-      <li class="nav-item dropdown d-none d-lg-flex">
+      </li> --}}
+      {{-- <li class="nav-item dropdown d-none d-lg-flex">
         <a class="nav-link dropdown-toggle px-0" id="quickDropdown" href="#" data-toggle="dropdown" aria-expanded="false"> Quick Links </a>
         <div class="dropdown-menu dropdown-menu-right navbar-dropdown pt-3" aria-labelledby="quickDropdown">
           <a href="#" class="dropdown-item">Schedule <span class="badge badge-primary ml-1">New</span></a>
           <a href="#" class="dropdown-item"><i class="mdi mdi-elevation-rise"></i>Reports</a>
           <a href="#" class="dropdown-item"><i class="mdi mdi-bookmark-plus-outline"></i>Score</a>
         </div>
-      </li>
+      </li> --}}
     </ul>
     <ul class="navbar-nav navbar-nav-right">
-      <li class="nav-item dropdown">
+      {{-- <li class="nav-item dropdown">
         <a class="nav-link count-indicator dropdown-toggle" id="messageDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
           <i class="mdi mdi-file-outline"></i>
           <span class="count">7</span>
@@ -108,7 +108,7 @@
             </div>
           </a>
         </div>
-      </li>
+      </li> --}}
       <li class="nav-item dropdown d-none d-xl-inline-block">
         <a class="nav-link dropdown-toggle" id="UserDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
           <span class="profile-text d-none d-md-inline-flex">Richard V.Welsh !</span>

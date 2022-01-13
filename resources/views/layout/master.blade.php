@@ -17,6 +17,12 @@
 
   <!-- end plugin css -->
 
+
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css"/>
+
+
+
+
   @yield('plugin-styles')
 
 
@@ -49,7 +55,11 @@
 
   <!-- plugin js -->
   @yield('plugin-scripts')
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
   <!-- end plugin js -->
+<script type="text/javascript" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+
+  @yield('codigo')
 
   <!-- common js -->
   <script src="{{ asset('assets/js/off-canvas.js')}}"></script>

@@ -21,19 +21,13 @@
                 </div>
                 <div class="col col-md-6">
                     <div class="row actions">
-                        <button type="button" class="btn-shop">
-                            <span>
-                                see shop
-                            </span>
-
-                        </button>
-                        <button type="button" class="btn-action">
-                            <span>
-                                New Category
-                                <i class="mdi mdi-plus"></i>
-                            </span>
-
-                        </button>
+                        <a href="#" class="btn-shop">
+                            see shop
+                        </a>
+                        <a  href="{{ route('category.create') }}" class="btn-action">
+                            New Category
+                            <i class="mdi mdi-plus"></i>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -43,8 +37,6 @@
             <div class="col grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body">
-                        {{-- <h4 class="card-title">Hoverable Table</h4>
-                        <p class="card-description"> Add class <code>.table-hover</code> </p> --}}
                         <div class="table-responsive">
                             <table class="table table-hover">
                                 <thead>
@@ -55,20 +47,33 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>AUDIO</td>
-                                        <td>Audio, se escucha bacan.</td>
-                                        <td>
-                                            <a href="#"><i class="fas fa-pen"></i></a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>TV</td>
-                                        <td>Televisor 20K, se ve bacan.</td>
-                                        <td>
-                                            <a href="#"><i class="fas fa-pen"></i></a>
-                                        </td>
-                                    </tr>
+                                    @if ($categories->count() > 0)
+                                        @foreach ($categories as $category)
+                                            <tr>
+                                                <td>{{ $category->name }}</td>
+                                                <td>{{ $category->description }}</td>
+                                                <td>
+                                                    <a href="{{ route('category.edit', $category->id) }}" class="btn btn-primary">
+                                                        <i class="mdi mdi-pencil"></i>
+                                                    </a>
+                                                    <form action="{{ route('category.delete', $category->id) }}" method="POST" class="d-inline">
+                                                        @csrf
+                                                        <button type="submit" class="btn btn-danger">
+                                                            <i class="mdi mdi-delete"></i>
+                                                        </button>
+
+                                                    </form>
+
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    @else
+                                        <tr>
+                                            <td colspan="3">
+                                                <h3>No data</h3>
+                                            </td>
+                                        </tr>
+                                    @endif
                                 </tbody>
                             </table>
                         </div>

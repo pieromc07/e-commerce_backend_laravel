@@ -21,8 +21,9 @@
         </h1>
 
 
-        <form action="" method="POST" class="row">
-            <div class="col-md-8 grid-margin stretch-card">
+        <form action="{{ route('category.update', ['id'=> $category->id]) }}" method="POST" class="row d-flex justify-content-around">
+            @csrf
+            <div class="col-md-10 grid-margin stretch-card">
                 <div class="card">
                     <h4 class="card-header">General information</h4>
                     <div class="card-body">
@@ -33,8 +34,15 @@
                                     <label for="name_product">Name
                                         <strong class="asterisk">*</strong>
                                     </label>
-                                    <input type="text" class="input-control is-medium" id="name_product" placeholder="Name">
+                                    <input type="text" class="input-control is-medium" id="name" name="name" placeholder="Name" value="{{$category->name}}">
                                 </div>
+
+                                @error('name')
+                                    <span class="text-danger">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+
                             </div>
 
                             <div class="col-12">
@@ -43,8 +51,15 @@
                                         <strong class="asterisk">*</strong>
                                     </label>
                                     <textarea class="input-control is-medium" rows="4" maxlength="500" name="description"
-                                        id="description"></textarea>
+                                        id="description">{{$category->description}}</textarea>
                                 </div>
+
+                                @error('description')
+                                    <span class="text-danger">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+
                             </div>
                             <div class="newCategory">
                                 <button class="newCategory-btn" type="submit">Save</button>

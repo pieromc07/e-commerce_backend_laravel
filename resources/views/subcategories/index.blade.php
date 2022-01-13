@@ -2,8 +2,7 @@
 
 @section('style')
     <link rel="stylesheet" href="{{ asset('css/tecshop.css') }}">
-    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
-        integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
 @endsection
 
 @section('content')
@@ -17,23 +16,17 @@
                         <div class="container-icon-shop">
                             <img src="{{ url('/assets/images/page_icon/icon-shop.svg', []) }}" alt="">
                         </div>
-                        <h3>Products</h3>
+                        <h3>Sub ategories</h3>
                     </div>
                 </div>
                 <div class="col col-md-6">
                     <div class="row actions">
-                        <a href="" class="btn-shop">
-                            <span>
-                                see shop
-                            </span>
-
+                        <a href="#" class="btn-shop">
+                            see shop
                         </a>
-                        <a href="{{ route('product.create') }}" class="btn-action">
-
-                            <span>
-                                New Product
-                                <i class="mdi mdi-plus"></i>
-                            </span>
+                        <a  href="{{ route('subcategory.create') }}" class="btn-action">
+                            New Sub subCategory
+                            <i class="mdi mdi-plus"></i>
                         </a>
                     </div>
                 </div>
@@ -44,41 +37,28 @@
             <div class="col grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body">
-                        {{-- <h4 class="card-title">Hoverable Table</h4>
-                        <p class="card-description"> Add class <code>.table-hover</code> </p> --}}
                         <div class="table-responsive">
-                            <table class="table table-hover" id="Tproducts">
+                            <table class="table table-hover" id="Tsubcategories">
                                 <thead>
                                     <tr>
                                         <th>Name</th>
                                         <th>Category</th>
-                                        <th>Price</th>
-                                        <th>Sale</th>
-                                        <th>Status</th>
+                                        <th>Description</th>
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @if ($products->count() > 0)
-                                        @foreach ($products as $product)
+                                    @if ($subcategories->count() > 0)
+                                        @foreach ($subcategories as $subcategory)
                                             <tr>
-                                                <td>{{ $product->name }}</td>
-                                                <td>{{ $product->subcategory->name }}</td>
-                                                <td>{{ $product->price }}</td>
-                                                <td>{{ $product->sale }}</td>
+                                                <td>{{ $subcategory->name }}</td>
+                                                <td>{{ $subcategory->category->name }}</td>
+                                                <td>{{ $subcategory->description }}</td>
                                                 <td>
-                                                    @if ($product->status == 1)
-                                                        <span class="badge badge-success">Active</span>
-                                                    @else
-                                                        <span class="badge badge-danger">Inactive</span>
-                                                    @endif
-                                                </td>
-                                                <td>
-                                                    <a href="{{ route('product.edit', $product->id) }}"
-                                                        class="btn btn-primary btn-sm">
+                                                    <a href="{{ route('subcategory.edit', $subcategory->id) }}" class="btn btn-primary">
                                                         <i class="mdi mdi-pencil"></i>
                                                     </a>
-                                                    <form action="{{ route('product.delete', $product->id) }}" method="POST" class="d-inline">
+                                                    <form action="{{ route('subcategory.delete', $subcategory->id) }}" method="POST" class="d-inline">
                                                         @csrf
                                                         <button type="submit" class="btn btn-danger">
                                                             <i class="mdi mdi-delete"></i>
@@ -91,11 +71,10 @@
                                         @endforeach
                                     @else
                                         <tr>
-                                            <td colspan="6" class="text-center">
+                                            <td colspan="4">
                                                 <h3>No data</h3>
                                             </td>
                                         </tr>
-
                                     @endif
                                 </tbody>
                             </table>
@@ -110,9 +89,10 @@
 @endsection
 
 @section('codigo')
-    <script type="text/javascript">
-        $(document).ready(function() {
-            $('#Tproducts').DataTable();
-        });
+<script type="text/javascript">
+
+    $(document).ready( function () {
+        $('#Tsubcategories').DataTable();
+    } );
     </script>
 @endsection
