@@ -20,7 +20,7 @@ class ProductController extends Controller
         // all products
         $products = Product::all();
 
-        return view('products.index' , compact('products'));
+        return view('products.index', compact('products'));
     }
 
     /**
@@ -53,9 +53,9 @@ class ProductController extends Controller
             'description' => 'required',
             'image' => 'required|image|max:2048',
         ]);
-        if($request->status){
+        if ($request->status) {
             $status = 1;
-        }else{
+        } else {
             $status = 0;
         }
         $url_image = Storage::url($request->file('image')->store('public/products'));
@@ -110,6 +110,7 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
+        // return $request;
         //
         $request->validate([
             'name' => 'required',
@@ -119,16 +120,19 @@ class ProductController extends Controller
             'description' => 'required',
             'image' => 'image|max:2048',
         ]);
-        $product = Product::find($id);
 
-        if($request->status){
+        if ($request->status) {
             $status = 1;
-        }else{
+        } else {
             $status = 0;
         }
-        $url = str_replace('/storage', '', $product->image);
-        if($product->image){
-            if(Storage::disk( 'public' )->delete( $url )){
+        // return $product;
+        $product = Product::find($id);
+        $url = str_replace('/storage/products/', '', $product->image);
+        $existsImg =  Storage::exists('public/products/' . $url);
+
+        if ($existsImg) {
+            if (Storage::delete('public/products/' . $url)) {
                 $url_image = Storage::url($request->file('image')->store('public/products'));
                 $product->update([
                     'name' => $request->name,
@@ -137,11 +141,24 @@ class ProductController extends Controller
                     'price' => $request->price,
                     'stock' => $request->stock,
                     'subcategory_id' => $request->subcategory_id,
-                    'status' => $status,
+                    'status' => $status
                 ]);
+            } else {
+                return 'error';
             }
-
+        } else {
+            $url_image = Storage::url($request->file('image')->store('public/products'));
+            $product->update([
+                'name' => $request->name,
+                'image' => $url_image,
+                'description' => $request->description,
+                'price' => $request->price,
+                'stock' => $request->stock,
+                'subcategory_id' => $request->subcategory_id,
+                'status' => $status
+            ]);
         }
+
         return redirect()->route('product.index');
     }
 
