@@ -1,5 +1,7 @@
 <?php
 
+use App\Providers\ShoppingCartProvider;
+
 return [
 
     /*
@@ -176,6 +178,9 @@ return [
         App\Providers\RouteServiceProvider::class,
 
         Collective\Html\HtmlServiceProvider::class,
+
+        App\Providers\ShoppingCartProvider::class
+
 
     ],
 

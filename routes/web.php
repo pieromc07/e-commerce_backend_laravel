@@ -2,8 +2,8 @@
 
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\Shop\ShopController;
 use App\Http\Controllers\SubCategoryController;
-use App\Models\Product;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,13 +17,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+## Rutas de Shop
 
-Route::get('/', function () {
-    return view('dashboard');
-});
+Route::get('/', [ShopController::class, 'index'])->name('shop.index');
+Route::get('/details/{id}', [ShopController::class, 'productDetails'])->name('shop.details');
+Route::get('/cart', [ShopController::class, 'cart'])->name('shop.cart');
+Route::get('/checkout', [ShopController::class, 'checkout'])->name('shop.checkout');
+Route::get('/shopping', [ShopController::class, 'shop'])->name('shop.shop');
 
 // Rutas de category
 Route::get('/categories', [CategoryController::class, 'index'])->name('category.index');
@@ -31,7 +31,7 @@ Route::get('/categories/create', [CategoryController::class, 'create'])->name('c
 Route::get('/categories/{id}', [CategoryController::class, 'show'])->name('category.show');
 Route::get('/categories/{id}/edit', [CategoryController::class, 'edit'])->name('category.edit');
 Route::post('/categories', [CategoryController::class, 'store'])->name('category.store');
-Route::post('/categories/{id}', [CategoryController::class, 'update'])->name('category.update');
+Route::post('/category/{id}', [CategoryController::class, 'update'])->name('category.update');
 Route::post('/categories/{id}', [CategoryController::class, 'destroy'])->name('category.delete');
 
 Route::get('/getsubcategory/{id}', [CategoryController::class, 'getSubCategory'])->name('category.getsubcategory');
@@ -43,7 +43,7 @@ Route::get('/subcategories/create', [SubCategoryController::class, 'create'])->n
 Route::get('/subcategories/{id}', [SubCategoryController::class, 'show'])->name('subcategory.show');
 Route::get('/subcategories/{id}/edit', [SubCategoryController::class, 'edit'])->name('subcategory.edit');
 Route::post('/subcategories', [SubCategoryController::class, 'store'])->name('subcategory.store');
-Route::post('/subcategories/{id}', [SubCategoryController::class, 'update'])->name('subcategory.update');
+Route::post('/subcategory/{id}', [SubCategoryController::class, 'update'])->name('subcategory.update');
 Route::post('/subcategories/{id}', [SubCategoryController::class, 'destroy'])->name('subcategory.delete');
 
 // Rutas de products
