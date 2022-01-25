@@ -2,7 +2,8 @@
 
 @section('style')
     <link rel="stylesheet" href="{{ asset('css/tecshop.css') }}">
-    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+        integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
 @endsection
 
 @section('content')
@@ -41,30 +42,45 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr class="row-order" onclick="document.location = 'orders/1'">
-                                        <td>1</td>
-                                        <td>Elias</td>
-                                        <td>tg.elias.s@gmail.com</td>
-                                        <td>11/12/2021</td>
-                                        <td>S/3,000</td>
-                                        <td class="condition delivered">ENTREGADO</td>
-                                    </tr>
-                                    <tr class="row-order" onclick="document.location = 'orders/2'">
-                                        <td>2</td>
-                                        <td>Piero</td>
-                                        <td>piero0716.mc@gmail.com</td>
-                                        <td>15/11/2021</td>
-                                        <td>S/3,299</td>
-                                        <td class="condition earring">PENDIENTE</td>
-                                    </tr>
-                                    <tr class="row-order" onclick="document.location = 'orders/3'">
-                                        <td>3</td>
-                                        <td>Juan</td>
-                                        <td>juan.08@gmail.com</td>
-                                        <td>02/10/2021</td>
-                                        <td>S/5,499</td>
-                                        <td class="condition cancelled">CANCELADO</td>
-                                    </tr>
+                                    @foreach ($orders as $key => $order)
+
+                                        @foreach ($order_customers as $order_customer)
+
+                                            @if ($order->id == $order_customer->orders_id)
+
+                                                @foreach ($customers as $customer)
+
+                                                    @if ($customer->id == $order_customer->customer_id)
+                                                        <tr class="row-order"
+                                                            onclick="document.location = '/order/edit/{{ $order->id }}'">
+                                                            <td> {{ $key + 1 }}</td>
+                                                            <td>{{ $customer->name }} {{ $customer->lastname }}</td>
+                                                            <td>{{ $customer->email }}</td>
+                                                            <td>{{ $order->date_placed }}</td>
+                                                            <td>S/ {{ $order->total }}</td>
+
+                                                            @if ($order->status == 'Pending')
+
+                                                                <td class="condition cancelled"
+                                                                    style="text-transform: uppercase;"> {{ $order->status }}
+                                                                </td>
+                                                            @elseif ($order->status == 'Processing')
+
+                                                                    <td class="condition earring"
+                                                                        style="text-transform: uppercase;"> {{ $order->status }}
+                                                                    </td>
+                                                            @else
+
+                                                                    <td class="condition completed"
+                                                                        style="text-transform: uppercase;"> {{ $order->status }}
+                                                                    </td>
+                                                            @endif
+                                                        </tr>
+                                                    @endif
+                                                @endforeach
+                                            @endif
+                                        @endforeach
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>
@@ -73,6 +89,4 @@
             </div>
         </div>
     </div>
-
-
 @endsection

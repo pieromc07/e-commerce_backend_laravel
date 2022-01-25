@@ -6,6 +6,8 @@ use App\Models\Category;
 use App\Models\Product;
 use App\Models\SubCategory;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
@@ -17,6 +19,18 @@ class ProductController extends Controller
      */
     public function index()
     {
+
+        if(Auth::check()){
+            $user = Auth::user();
+            $role = $user->role;
+
+            if($role != 'admin'){
+                return redirect('/');
+            }
+        }else{
+            return redirect()->route('admin.login');
+        }
+
         // all products
         $products = Product::all();
 
@@ -31,6 +45,17 @@ class ProductController extends Controller
     public function create()
     {
         //
+        if(Auth::check()){
+            $user = Auth::user();
+            $role = $user->role;
+
+            if($role != 'admin'){
+                return redirect('/');
+            }
+        }else{
+            return redirect()->route('admin.login');
+        }
+
         $categories = Category::all();
         $subcategories = SubCategory::all();
         return view('products.create', compact('categories', 'subcategories'));
@@ -45,6 +70,16 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         //
+        if(Auth::check()){
+            $user = Auth::user();
+            $role = $user->role;
+
+            if($role != 'admin'){
+                return redirect('/');
+            }
+        }else{
+            return redirect()->route('admin.login');
+        }
         $request->validate([
             'name' => 'required',
             'subcategory_id' => 'required',
@@ -82,6 +117,16 @@ class ProductController extends Controller
     public function show($id)
     {
         //
+        if(Auth::check()){
+            $user = Auth::user();
+            $role = $user->role;
+
+            if($role != 'admin'){
+                return redirect('/');
+            }
+        }else{
+            return redirect()->route('admin.login');
+        }
     }
 
     /**
@@ -93,6 +138,16 @@ class ProductController extends Controller
     public function edit($id)
     {
         //
+        if(Auth::check()){
+            $user = Auth::user();
+            $role = $user->role;
+
+            if($role != 'admin'){
+                return redirect('/');
+            }
+        }else{
+            return redirect()->route('admin.login');
+        }
         $product = Product::find($id);
         $categories = Category::all();
         $subcategories = SubCategory::all();
@@ -112,6 +167,16 @@ class ProductController extends Controller
     {
         // return $request;
         //
+        if(Auth::check()){
+            $user = Auth::user();
+            $role = $user->role;
+
+            if($role != 'admin'){
+                return redirect('/');
+            }
+        }else{
+            return redirect()->route('admin.login');
+        }
         $request->validate([
             'name' => 'required',
             'subcategory_id' => 'required',
@@ -171,6 +236,16 @@ class ProductController extends Controller
     public function destroy($id)
     {
         //
+        if(Auth::check()){
+            $user = Auth::user();
+            $role = $user->role;
+
+            if($role != 'admin'){
+                return redirect('/');
+            }
+        }else{
+            return redirect()->route('admin.login');
+        }
         $product = Product::find($id)->delete();
 
         return redirect()->route('product.index');

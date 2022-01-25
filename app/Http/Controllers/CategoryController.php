@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\SubCategory;
+use Illuminate\Support\Facades\Auth;
 
 class CategoryController extends Controller
 {
@@ -16,7 +17,16 @@ class CategoryController extends Controller
     public function index()
     {
         //list all categories
+        if(Auth::check()){
+            $user = Auth::user();
+            $role = $user->role;
 
+            if($role != 'admin'){
+                return redirect('/');
+            }
+        }else{
+            return redirect()->route('admin.login');
+        }
         $categories = Category::all();
         return view('categories.index', compact('categories'));
     }
@@ -29,12 +39,32 @@ class CategoryController extends Controller
     public function create()
     {
         //
+        if(Auth::check()){
+            $user = Auth::user();
+            $role = $user->role;
+
+            if($role != 'admin'){
+                return redirect('/');
+            }
+        }else{
+            return redirect()->route('admin.login');
+        }
         return view('categories.create');
     }
 
     // method far getSubCategory
     public function getSubCategory($id)
     {
+        if(Auth::check()){
+            $user = Auth::user();
+            $role = $user->role;
+
+            if($role != 'admin'){
+                return redirect('/');
+            }
+        }else{
+            return redirect()->route('admin.login');
+        }
         return SubCategory::where('category_id', $id)->get();
     }
 
@@ -47,6 +77,16 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         //
+        if(Auth::check()){
+            $user = Auth::user();
+            $role = $user->role;
+
+            if($role != 'admin'){
+                return redirect('/');
+            }
+        }else{
+            return redirect()->route('admin.login');
+        }
         $validated = $request->validate([
             'name' => 'required|max:255 | unique:category',
             'description' => 'required|max:255',
@@ -72,6 +112,16 @@ class CategoryController extends Controller
     public function show($id)
     {
         //
+        if(Auth::check()){
+            $user = Auth::user();
+            $role = $user->role;
+
+            if($role != 'admin'){
+                return redirect('/');
+            }
+        }else{
+            return redirect()->route('admin.login');
+        }
     }
 
     /**
@@ -83,6 +133,16 @@ class CategoryController extends Controller
     public function edit($id)
     {
         //
+        if(Auth::check()){
+            $user = Auth::user();
+            $role = $user->role;
+
+            if($role != 'admin'){
+                return redirect('/');
+            }
+        }else{
+            return redirect()->route('admin.login');
+        }
         $category = Category::find($id);
         return view('categories.edit', compact('category'));
     }
@@ -97,6 +157,16 @@ class CategoryController extends Controller
     public function update(Request $request, $id)
     {
         //
+        if(Auth::check()){
+            $user = Auth::user();
+            $role = $user->role;
+
+            if($role != 'admin'){
+                return redirect('/');
+            }
+        }else{
+            return redirect()->route('admin.login');
+        }
         $validated = $request->validate([
             'name' => 'required|max:255 | unique:category',
             'description' => 'required|max:255',
@@ -120,6 +190,16 @@ class CategoryController extends Controller
     public function destroy($id)
     {
         //
+        if(Auth::check()){
+            $user = Auth::user();
+            $role = $user->role;
+
+            if($role != 'admin'){
+                return redirect('/');
+            }
+        }else{
+            return redirect()->route('admin.login');
+        }
         $category = Category::find($id);
         $category->delete();
         return redirect()->route('category.index')->with('success', 'Category deleted successfully');

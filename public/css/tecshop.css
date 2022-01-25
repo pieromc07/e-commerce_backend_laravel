@@ -487,3 +487,9 @@ hr{
     color: gray;
     margin: -15px 0 0 0;
 }
+
+.completed{
+
+    color: #008dd5 !important;
+
+}

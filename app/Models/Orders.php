@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Models\CustomerOrders;
+
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -42,5 +44,13 @@ class Orders extends Model
 
     }
 
+
+ // customer Orders
+
+        public function customerOrders()
+        {
+            return $this->hasMany(CustomerOrders::class);
+
+        }
 
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\SubCategory;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class SubCategoryController extends Controller
 {
@@ -16,6 +17,16 @@ class SubCategoryController extends Controller
     public function index()
     {
         // all subcategories
+        if(Auth::check()){
+            $user = Auth::user();
+            $role = $user->role;
+
+            if($role != 'admin'){
+                return redirect('/');
+            }
+        }else{
+            return redirect()->route('admin.login');
+        }
         $subcategories = SubCategory::all();
         return view('subcategories.index', compact('subcategories'));
 
@@ -29,6 +40,16 @@ class SubCategoryController extends Controller
     public function create()
     {
         //
+        if(Auth::check()){
+            $user = Auth::user();
+            $role = $user->role;
+
+            if($role != 'admin'){
+                return redirect('/');
+            }
+        }else{
+            return redirect()->route('admin.login');
+        }
         $categories = Category::all();
         return view('subcategories.create', compact('categories'));
     }
@@ -42,7 +63,16 @@ class SubCategoryController extends Controller
     public function store(Request $request)
     {
         //
+        if(Auth::check()){
+            $user = Auth::user();
+            $role = $user->role;
 
+            if($role != 'admin'){
+                return redirect('/');
+            }
+        }else{
+            return redirect()->route('admin.login');
+        }
         $request->validate([
             'name' => 'required|max:255 | unique:subcategory',
             'description' => 'required',
