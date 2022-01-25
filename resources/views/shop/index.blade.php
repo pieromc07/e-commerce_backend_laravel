@@ -309,9 +309,16 @@
                                                 </div>
                                             </div>
                                             <div class="product-info">
-                                                <p class="product-name"><span>{{ $show->product->name }}</span></p>
-                                                <div class="wrap-price"><span
-                                                        class="product-price">{{ $show->product->price }}</span></div>
+                                                <p class="product-name">
+                                                    <span>
+                                                        {{ $show->product->name }}
+                                                    </span>
+                                                </p>
+                                                <div class="wrap-price">
+                                                    <span class="product-price">
+                                                        {{ $show->product->price }}
+                                                    </span>
+                                                </div>
                                             </div>
                                         </div>
                                     @endif

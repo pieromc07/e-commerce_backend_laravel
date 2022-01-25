@@ -43,10 +43,24 @@
                                             </a>
                                             <div class="wrap-price">
                                                 <span class="product-price">
-                                                    {{$product->price}}
+                                                    {{ $product->price }}
                                                 </span>
                                             </div>
-                                            <a href="#" class="btn add-to-cart">Add To Cart</a>
+
+
+                                            @if ($product->stock > 0)
+                                            <form action="{{ route('shop.addToCart') }}" method="POST">
+                                                @csrf
+
+                                                <input type="hidden" name="id" value="{{ $product->id }}">
+                                                {{-- quantity --}}
+                                                <input type="hidden" name="quantity" value="1">
+
+                                                <button type="submit" class="btn add-to-cart">Add to Cart</button>
+                                            </form>
+
+                                            @endif
+
                                         </div>
                                     </div>
                                 </li>
@@ -56,7 +70,7 @@
                     </div>
 
                     <div class="wrap-pagination-info">
-                        {{$products->links()}}
+                        {{ $products->links() }}
                     </div>
                 </div>
                 <!--end main products area-->

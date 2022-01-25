@@ -19,7 +19,7 @@
                             @if (Auth::check())
                                 {{-- avatar user --}}
                                 <li class="menu-item">
-                                    <a href="{{ route('user.profile', Auth::user()->id) }}">
+                                    <a href="">
                                         <span class="icon label-before fa fa-user"></span>
                                         {{ Auth::user()->name }}
                                     </a>
@@ -27,8 +27,7 @@
 
 
                                 <li class="menu-item">
-                                    <a href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
+                                    <a href="{{ route('shop.logout') }}">
                                         <span
                                             class="icon
                                         label-before fa fa-sign-out"></span>
@@ -37,7 +36,7 @@
                                 </li>
                             @else
                                 <li class="menu-item">
-                                    <a href="">
+                                    <a href="{{ route('shop.showLogin') }}">
                                         <span
                                             class="icon
                                         label-before fa fa-sign-in"></span>
@@ -45,7 +44,7 @@
                                     </a>
                                 </li>
                                 <li class="menu-item">
-                                    <a href="">
+                                    <a href="{{ route('shop.showRegister') }}">
                                         <span
                                             class="icon
                                         label-before fa fa-user"></span>
@@ -53,40 +52,6 @@
                                     </a>
                                 </li>
                             @endif
-                            {{-- <li class="menu-item lang-menu menu-item-has-children parent">
-                                <a title="English" href="#"><span class="img label-before"><img
-                                            src="assets/images/lang-en.png" alt="lang-en"></span>English<i
-                                        class="fa fa-angle-down" aria-hidden="true"></i></a>
-                                <ul class="submenu lang">
-                                    <li class="menu-item"><a title="hungary" href="#"><span
-                                                class="img label-before"><img src="assets/images/lang-hun.png"
-                                                    alt="lang-hun"></span>Hungary</a></li>
-                                    <li class="menu-item"><a title="german" href="#"><span
-                                                class="img label-before"><img src="assets/images/lang-ger.png"
-                                                    alt="lang-ger"></span>German</a></li>
-                                    <li class="menu-item"><a title="french" href="#"><span
-                                                class="img label-before"><img src="assets/images/lang-fra.png"
-                                                    alt="lang-fre"></span>French</a></li>
-                                    <li class="menu-item"><a title="canada" href="#"><span
-                                                class="img label-before"><img src="assets/images/lang-can.png"
-                                                    alt="lang-can"></span>Canada</a></li>
-                                </ul>
-                            </li>
-                            <li class="menu-item menu-item-has-children parent">
-                                <a title="Dollar (USD)" href="#">Dollar (USD)<i class="fa fa-angle-down"
-                                        aria-hidden="true"></i></a>
-                                <ul class="submenu curency">
-                                    <li class="menu-item">
-                                        <a title="Pound (GBP)" href="#">Pound (GBP)</a>
-                                    </li>
-                                    <li class="menu-item">
-                                        <a title="Euro (EUR)" href="#">Euro (EUR)</a>
-                                    </li>
-                                    <li class="menu-item">
-                                        <a title="Dollar (USD)" href="#">Dollar (USD)</a>
-                                    </li>
-                                </ul>
-                            </li> --}}
                         </ul>
                     </div>
                 </div>
@@ -113,10 +78,10 @@
                                     <ul class="list-cate">
                                         <li class="level-0">All Category</li>
                                         @foreach ($categories as $category)
-                                            <li class="level-1">-{{$category->name}}</li>
-                                            @foreach ( $subcategories as $subcategory )
+                                            <li class="level-1">-{{ $category->name }}</li>
+                                            @foreach ($subcategories as $subcategory)
                                                 @if ($subcategory->category_id == $category->id)
-                                                    <li class="level-2">{{$subcategory->name}}</li>
+                                                    <li class="level-2">{{ $subcategory->name }}</li>
                                                 @endif
                                             @endforeach
                                         @endforeach
@@ -140,7 +105,7 @@
                             <a href="#" class="link-direction">
                                 <i class="fa fa-shopping-cart" aria-hidden="true"></i>
                                 <div class="left-info">
-                                    <span class="index">{{$shopping_cart->getQuantity()}} items</span>
+                                    <span class="index">{{ $shopping_cart->getQuantity() }} items</span>
                                     <span class="title">CART</span>
                                 </div>
                             </a>
@@ -179,20 +144,21 @@
                     <div class="container">
                         <ul class="nav primary clone-main-menu" id="mercado_main" data-menuname="Main menu">
                             <li class="menu-item home-icon">
-                                <a href="{{route('shop.index')}}" class="link-term mercado-item-title"><i class="fa fa-home"
-                                        aria-hidden="true"></i></a>
+                                <a href="{{ route('shop.index') }}" class="link-term mercado-item-title"><i
+                                        class="fa fa-home" aria-hidden="true"></i></a>
                             </li>
                             {{-- <li class="menu-item">
                                 <a href="about-us.html" class="link-term mercado-item-title">About Us</a>
                             </li> --}}
                             <li class="menu-item">
-                                <a href="{{route('shop.shop')}}" class="link-term mercado-item-title">Shop</a>
+                                <a href="{{ route('shop.shop') }}" class="link-term mercado-item-title">Shop</a>
                             </li>
                             <li class="menu-item">
                                 <a href="{{ route('shop.cart') }}" class="link-term mercado-item-title">Cart</a>
                             </li>
                             <li class="menu-item">
-                                <a href="{{ route('shop.checkout') }}" class="link-term mercado-item-title">Checkout</a>
+                                <a href="{{ route('shop.checkout') }}"
+                                    class="link-term mercado-item-title">Checkout</a>
                             </li>
                             {{-- <li class="menu-item">
                                 <a href="contact-us.html" class="link-term mercado-item-title">Contact Us</a>

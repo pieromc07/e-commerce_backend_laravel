@@ -24,6 +24,9 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('shop/assets/css/chosen.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('shop/assets/css/style.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('shop/assets/css/color-02.css') }}">
+
+    @yield('css')
+
 </head>
 
 

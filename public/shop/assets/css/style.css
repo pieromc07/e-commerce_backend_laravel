@@ -2368,7 +2368,7 @@ li.menu-item .nav-label.sale-label::before{
     color: #444444;
     margin-top: 11px;
 }
-.product-style-3 a.add-to-cart{
+.product-style-3 button.add-to-cart{
     display: inline-block;
     width: 100%;
     font-size: 14px;
@@ -2386,8 +2386,9 @@ li.menu-item .nav-label.sale-label::before{
     transition: all 0.3s ease 0s;
     margin-top: 14px;
 }
-.product-style-3 a.add-to-cart:hover{
+.product-style-3 button.add-to-cart:hover{
     color: #f5f5f5;
+    background: #365db5;
 }
 .wrap-pagination-info{
     margin-top: 46px;
@@ -4106,11 +4107,13 @@ article.single-post blockquote p:last-child::after{
     display: table-cell;
     vertical-align: middle;
 }
-.shopping-cart .summary .checkout-info{
-    width: 259px;
+ .summary .checkout-info{
+    /* width: 259px; */
+    width: 100%;
     padding-right: 10px;
-    display: table-cell;
+    display: flex !important;
     vertical-align: middle;
+    justify-content: center;
 }
 .order-summary .title-box{
     font-size: 14px;
@@ -4139,7 +4142,9 @@ article.single-post blockquote p:last-child::after{
     float: right;
 }
 .summary .update-clear{
-    display: table-cell;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
     vertical-align: middle;
 }
 .order-summary .summary-info.total-info{
@@ -4193,7 +4198,7 @@ article.single-post blockquote p:last-child::after{
     filter: alpha(opacity=100);
 }
 .summary .checkout-info .btn-checkout{
-    width: 100%;
+    width: 30%;
     border: 0;
     border-radius: 0;
     color: #ffffff;
@@ -4203,6 +4208,8 @@ article.single-post blockquote p:last-child::after{
     padding: 10px;
     margin-top: 12px;
     margin-bottom: 18px;
+    margin-left: auto;
+    margin-right: auto;
 }
 .summary .checkout-info .link-to-shop{
     font-size: 14px;
@@ -4214,7 +4221,7 @@ article.single-post blockquote p:last-child::after{
     margin-left: 7px;
 }
 .summary .update-clear .btn{
-    display: block;
+    display: inline-block;
     width: 100%;
     max-width: 249px;
     background-color: #f5f5f5;
@@ -4227,13 +4234,13 @@ article.single-post blockquote p:last-child::after{
     text-transform: uppercase;
     padding: 9px;
     float: right;
-    margin: 5px 0;
+    margin: 5px 1rem;
 }
 .summary .checkout-info .btn-checkout:hover,
 .summary .update-clear .btn:hover{
     color: #ffffff;
-    background: #333333;
-    border-color: #333333;
+    background: #365db5;
+    border-color: #365db5;
 }
 .box-in-site.wrap-show-advance-info-box .wrap-products{
     border: 1px solid #e6e6e6;
@@ -4430,6 +4437,14 @@ article.single-post blockquote p:last-child::after{
     max-width: 269px;
     width: 100%;
     padding-top: 30px;
+}
+.wrap-product-detail .detail-info button{
+    width: 100%;
+    border: none;
+}
+.wrap-product-detail .detail-info button:hover{
+    border: none;
+    border-radius: 5px;
 }
 .wrap-product-detail .detail-info .wrap-butons .add-to-cart{
     display: block;

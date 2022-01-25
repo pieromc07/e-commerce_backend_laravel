@@ -50,23 +50,31 @@
                             <p class="availability">Availability: <b>Out of Stock</b></p>
                         </div>
                     @endif
+                    <form action="{{ route('shop.addToCart') }}" method="POST">
+                        @csrf
+                        <input type="hidden" name="id" value="{{ $product->id }}">
+                        @if ($product->stock > 0)
+                            <div class="quantity">
+                                <span>Quantity:</span>
+                                <div class="quantity-input">
+                                    <input type="number" name="quantity" value="1" min="1" max="{{ $product->stock }}"
+                                        step="1" id="quantity">
 
-                    <div class="quantity">
-                        <span>Quantity:</span>
-                        <div class="quantity-input">
-                            <input type="text" name="product-quatity" value="1" data-max="120" pattern="[0-9]*">
-
-                            <a class="btn btn-reduce" href="#"></a>
-                            <a class="btn btn-increase" href="#"></a>
+                                    <button class="btn btn-reduce" id="reduce"></button>
+                                    <button class="btn btn-increase" id="increase"></button>
+                                </div>
+                            </div>
+                        @endif
+                        <div class="wrap-butons">
+                            @if ($product->stock > 0)
+                                <button type="submit" class="btn add-to-cart">Add to Cart</button>
+                            @endif
+                            <div class="wrap-btn">
+                                <a href="#" class="btn btn-compare">Add Compare</a>
+                                <a href="#" class="btn btn-wishlist">Add Wishlist</a>
+                            </div>
                         </div>
-                    </div>
-                    <div class="wrap-butons">
-                        <a href="#" class="btn add-to-cart">Add to Cart</a>
-                        <div class="wrap-btn">
-                            <a href="#" class="btn btn-compare">Add Compare</a>
-                            <a href="#" class="btn btn-wishlist">Add Wishlist</a>
-                        </div>
-                    </div>
+                    </form>
                 </div>
                 <div class="advance-info">
                     <div class="tab-control normal">
@@ -223,16 +231,18 @@
 
                                     <div class="product product-style-2 equal-elem ">
                                         <div class="product-thumnail">
-                                            <a href={{ route('shop.details', ['id' => $show->product->id]) }}" title="T-Shirt Raw Hem Organic Boro Constrast Denim">
-                                                <figure><img src="{{$show->product->image}}" width="214"
-                                                        height="214" alt="T-Shirt Raw Hem Organic Boro Constrast Denim">
+                                            <a href={{ route('shop.details', ['id' => $show->product->id]) }}"
+                                                title="T-Shirt Raw Hem Organic Boro Constrast Denim">
+                                                <figure><img src="{{ $show->product->image }}" width="214" height="214"
+                                                        alt="T-Shirt Raw Hem Organic Boro Constrast Denim">
                                                 </figure>
                                             </a>
                                             <div class="group-flash">
                                                 <span class="flash-item new-label">new</span>
                                             </div>
                                             <div class="wrap-btn">
-                                                <a href="{{ route('shop.details', ['id' => $show->product->id]) }}" class="function-link">quick view</a>
+                                                <a href="{{ route('shop.details', ['id' => $show->product->id]) }}"
+                                                    class="function-link">quick view</a>
                                             </div>
                                         </div>
                                         <div class="product-info">
@@ -416,4 +426,38 @@
     </div>
     <!--end row-->
 
+@endsection
+
+
+@section('scripts')
+    <script type="text/javascript">
+        document.addEventListener('DOMContentLoaded', function() {
+
+            const reduce = document.querySelector('#reduce');
+            const increase = document.querySelector('#increase');
+
+            const quantity = document.querySelector('#quantity');
+
+            const max = quantity.getAttribute('max');
+
+            // change value of quantity
+            quantity.addEventListener('change', function() {
+                if (quantity.value > max) {
+                    quantity.value = max;
+                }
+            });
+
+            reduce.addEventListener('click', () => {
+                if (parseInt(quantity.value) > 1) {
+                    quantity.value = parseInt(quantity.value) - 1;
+                }
+            });
+
+            increase.addEventListener('click', () => {
+                if (parseInt(quantity.value) < parseInt(max)) {
+                    quantity.value = parseInt(quantity.value) + 1;
+                }
+            });
+        });
+    </script>
 @endsection

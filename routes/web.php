@@ -3,6 +3,7 @@
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\Shop\ShopController;
+use App\Http\Controllers\Shop\ShoppingCartController;
 use App\Http\Controllers\SubCategoryController;
 use Illuminate\Support\Facades\Route;
 
@@ -22,8 +23,31 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [ShopController::class, 'index'])->name('shop.index');
 Route::get('/details/{id}', [ShopController::class, 'productDetails'])->name('shop.details');
 Route::get('/cart', [ShopController::class, 'cart'])->name('shop.cart');
-Route::get('/checkout', [ShopController::class, 'checkout'])->name('shop.checkout');
 Route::get('/shopping', [ShopController::class, 'shop'])->name('shop.shop');
+// add to cart ShopCartController
+Route::post('addToCart',[ShoppingCartController::class, 'addToCart'])->name('shop.addToCart');
+// delete from cart ShopCartController
+Route::post('cart/delete',[ShoppingCartController::class, 'deleteItem'])->name('shop.deleteItem');
+// update cart ShopCartController
+Route::post('updateCart',[ShoppingCartController::class, 'updateCart'])->name('shop.updateCart');
+// checkout ShopppingCartController
+Route::get('/checkout',[ShoppingCartController::class, 'showcheckout'])->name('shop.showcheckout');
+// checkout ShoppingCartController
+Route::post('/checkout',[ShoppingCartController::class, 'checkout'])->name('shop.checkout');
+// cart/update/quantity
+Route::post('cart/update/quantity',[ShoppingCartController::class, 'updateQuantity'])->name('shop.updateQuantity');
+
+// shop login
+Route::get('/login',[ShopController::class, 'showLogin'])->name('shop.showLogin');
+Route::post('/login',[ShopController::class, 'login'])->name('shop.login');
+// shop register
+Route::get('/register',[ShopController::class, 'showRegister'])->name('shop.showRegister');
+// shop register
+Route::post('/register',[ShopController::class, 'register'])->name('shop.register');
+
+// logout
+Route::get('/logout',[ShopController::class, 'logout'])->name('shop.logout');
+
 
 // Rutas de category
 Route::get('/categories', [CategoryController::class, 'index'])->name('category.index');
