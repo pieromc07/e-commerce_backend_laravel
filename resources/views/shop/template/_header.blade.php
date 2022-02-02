@@ -61,7 +61,7 @@
                 <div class="mid-section main-info-area">
 
                     <div class="wrap-logo-top left-section">
-                        <a href="index.html" class="link-to-home" style="font-size: 3.6rem;">
+                        <a href="/" class="link-to-home" style="font-size: 3.6rem;">
                             <span>TEC<strong>SHOP</strong></span>
                         </a>
                     </div>
@@ -102,7 +102,7 @@
                             </a>
                         </div>
                         <div class="wrap-icon-section minicart">
-                            <a href="#" class="link-direction">
+                            <a href="/cart" class="link-direction">
                                 <i class="fa fa-shopping-cart" aria-hidden="true"></i>
                                 <div class="left-info">
                                     <span class="index">{{ $shopping_cart->getQuantity() }} items</span>

@@ -34,7 +34,7 @@ class AuthController extends Controller
         ]);
 
         if (auth()->attempt($validated)) {
-            return redirect()->route('admin.home');
+            return redirect()->route('home');
         }
     }
 

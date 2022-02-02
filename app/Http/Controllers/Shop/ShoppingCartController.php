@@ -137,7 +137,17 @@ class ShoppingCartController extends Controller
         // ver si el usuario esta logueado
         if (!auth()->check()) {
             return redirect()->route('shop.login');
+        }else{
+            $user = auth()->user();
+            $role = $user->role;
+            if($role != 'Cliente'){
+                auth()->logout();
+                return redirect()->route('shop.login');
+            }
+
         }
+
+
 
         // all categories
         $categories = Category::all();
